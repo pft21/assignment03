@@ -1,0 +1,28 @@
+{
+  "name": "front-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:run": "npx cypress run --reporter mochawesome --spec cypress/integration/test-suite-assignment02.spec.js",
+    "cypress:run:all": "npx cypress run --reporter mochawesome",
+    "test:vrt": "percy exec cypress run --spec cypress/integration/test-suite-percy.spec.js",
+    "merge:reports": "npx mochawesome-merge cypress/results/*.json > mochawesome.json",
+    "generate:html": "npx marge mochawesome.json",
+    "delete:reports": "rm -rf cypress/results && rm -rf cypress/videos && rm mochawesome.json && rm -rf mochawesome-report",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@percy/cli": "*",
+    "@percy/cypress": "^3.1.0",
+    "cypress": "^7.1.0",
+    "faker": "^5.5.3",
+    "mochawesome": "^6.2.2",
+    "mochawesome-merge": "^4.2.0",
+    "mochawesome-report-generator": "^5.2.0"
+  }
+}
