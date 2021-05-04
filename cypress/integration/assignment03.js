@@ -1,16 +1,120 @@
 /// <reference types="cypress" />
 
+describe('Assignment 3', () =>{
+    beforeEach('Login', () => {     
+        cy.visit('http://localhost:3000')
+        cy.get(':nth-child(1) > input').type('tester01')
+        cy.get(':nth-child(2) > input').type('GteteqbQQgSr88SwNExUQv2ydb7xuf8c')
+        cy.get('.btn').click().wait(500)
+        cy.contains('Tester Hotel Overview')
 
-describe('Test suite with Page-objects - Assignment02', () =>{
-
-    beforeEach ('Visit website and log in', () => {
     })
 
-    afterEach ('Logout', () => {
+    afterEach('Login', () => {     
+        cy.get('.user > .btn').click().wait(500)
+        cy.contains('Login')
+    })
+    
+
+    it('Create room', () => {     
+        cy.get('.blocks > :nth-child(1) > .btn').click().wait(500)
+        cy.contains('Rooms')
+        cy.get('h2 > .btn').click().wait(500)
+        cy.contains('New Room')
+        cy.get(':nth-child(2) > input').type('103')
+        cy.get(':nth-child(3) > input').type('1')
+        cy.get(':nth-child(5) > input').type('1500')
+        cy.get(':nth-child(1) > select').select('double')
+        cy.get('.checkbox').click()
+        cy.get(':nth-child(6) > select').select('balcony')
+        cy.get('.blue').click().wait(500)
+        cy.contains('Rooms')
+        cy.get('.rooms > :nth-last-child(1)')
+            .should('contain', 'double')
+            .and('contain', '103')
+            .and('contain', '1')
+            .and('contain', 'true')
+            .and('contain', '1500')
+            .and('contain', 'balcony')
     })
 
-    it('', () => {
+    it('Edit room', () => {
+        
+        cy.get('.blocks > :nth-child(1) > .btn').click().wait(500)
+        cy.contains('Rooms')
+        cy.get('h2 > .btn').click().wait(500)
+        cy.contains('New Room')
+        cy.get(':nth-child(2) > input').type('103')
+        cy.get(':nth-child(3) > input').type('1')
+        cy.get(':nth-child(5) > input').type('1500')
+        cy.get(':nth-child(1) > select').select('double')
+        cy.get('.checkbox').click()
+        cy.get(':nth-child(6) > select').select('balcony')
+        cy.get('.blue').click().wait(500)
+        cy.contains('Rooms')
+        cy.get('.rooms > :nth-last-child(1)')
+            .should('contain', 'double')
+            .and('contain', '103')
+            .and('contain', '1')
+            .and('contain', 'true')
+            .and('contain', '1500')
+            .and('contain', 'balcony')
+        cy.get(':nth-last-child(1) > .action > img').click().wait(200)
+        cy.get('.menu > :nth-child(1)').click().wait(500)
+        cy.contains('Room: ')
+        cy.get(':nth-child(4) > input').clear().type('104')
+        cy.get('.blue').click().wait(500)
+        cy.contains('Rooms')
+        cy.get('.rooms > :nth-last-child(1)')
+        .should('contain', 'double')
+        .and('contain', '104')
+        .and('contain', '1')
+        .and('contain', 'true')
+        .and('contain', '1500')
+        .and('contain', 'balcony')
+    })
 
+    it('Delete room', () => {
+        
+        cy.get('.blocks > :nth-child(1) > .btn').click().wait(500)
+        cy.contains('Rooms')
+        cy.get('h2 > .btn').click().wait(500)
+        cy.contains('New Room')
+        cy.get(':nth-child(2) > input').type('103')
+        cy.get(':nth-child(3) > input').type('1')
+        cy.get(':nth-child(5) > input').type('1500')
+        cy.get(':nth-child(1) > select').select('double')
+        cy.get('.checkbox').click()
+        cy.get(':nth-child(6) > select').select('balcony')
+        cy.get('.blue').click().wait(500)
+        cy.contains('Rooms')
+        cy.get('.rooms > :nth-last-child(1)')
+            .should('contain', 'double')
+            .and('contain', '103')
+            .and('contain', '1')
+            .and('contain', 'true')
+            .and('contain', '1500')
+            .and('contain', 'balcony')
+        cy.get('.rooms').children().last().invoke('index').then((i) => {
+            let quantity = i + 1
+            cy.get(':nth-last-child(1) > .action > img').click().wait(200)
+            cy.get('.menu > :nth-child(2)').click().wait(200)
+            cy.get('.rooms').children().should('have.length', (quantity - 1))
+        })
+    })
+
+    it('Create room without entering price', () => {     
+        cy.get('.blocks > :nth-child(1) > .btn').click().wait(500)
+        cy.contains('Rooms')
+        cy.get('h2 > .btn').click().wait(500)
+        cy.contains('New Room')
+        cy.get(':nth-child(2) > input').type('103')
+        cy.get(':nth-child(3) > input').type('1')
+        cy.get(':nth-child(1) > select').select('double')
+        cy.get('.checkbox').click()
+        cy.get(':nth-child(6) > select').select('balcony')
+        cy.get('.blue').click().wait(500)
+        cy.contains('Price must be a whole number')
     })
 
 })
