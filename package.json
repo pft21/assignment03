@@ -5,12 +5,7 @@
   "main": "index.js",
   "scripts": {
     "cypress:open": "cypress open",
-    "cypress:run": "npx cypress run --reporter mochawesome --spec cypress/integration/test-suite-assignment02.spec.js",
-    "cypress:run:all": "npx cypress run --reporter mochawesome",
-    "test:vrt": "percy exec cypress run --spec cypress/integration/test-suite-percy.spec.js",
-    "merge:reports": "npx mochawesome-merge cypress/results/*.json > mochawesome.json",
-    "generate:html": "npx marge mochawesome.json",
-    "delete:reports": "rm -rf cypress/results && rm -rf cypress/videos && rm mochawesome.json && rm -rf mochawesome-report",
+    "cypress:run": "npx cypress run",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
