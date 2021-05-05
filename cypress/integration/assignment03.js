@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('Testfall', () => {
+describe('Test cases', () => {
 
     beforeEach("Login", () => {
         cy.visit("http://localhost:3000");
@@ -63,7 +63,6 @@ describe('Testfall', () => {
     })
 
     it('Edit room', () => {
-
         cy.get('.blocks > :nth-child(1) > .btn').click().wait(500)
         cy.contains('Rooms')
         cy.get('h2 > .btn').click().wait(500)
@@ -99,7 +98,6 @@ describe('Testfall', () => {
     })
 
     it('Delete room', () => {
-
         cy.get('.blocks > :nth-child(1) > .btn').click().wait(500)
         cy.contains('Rooms')
         cy.get('h2 > .btn').click().wait(500)
@@ -153,8 +151,6 @@ describe('Testfall', () => {
         cy.contains("Tester")
     })
 
-    // TESTFALL: TA BORT EN KLIENT
-
     it("Delete client", () => {
         cy.visit("http://localhost:3000/clients");
         cy.get("h2").should("contain", "Clients")
@@ -162,7 +158,6 @@ describe('Testfall', () => {
         cy.get(".menu > :nth-child(2)").click();
         cy.get("h2").should("contain", "Clients")
         cy.contains("Back")
-
     })
 
 })
